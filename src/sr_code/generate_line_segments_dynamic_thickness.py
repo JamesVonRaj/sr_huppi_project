@@ -643,14 +643,19 @@ def generate_line_segments_dynamic_thickness(
             print(f'generate_segments: {percentage}% done', end='\r')
     else:
         ## no peredefined configuration
-        for i in range(size): 
+        for i in range(size):
+            # Handle both 'uniform' string and list of angles
+            if angles == 'uniform':
+                angle_arg = 'uniform'
+            else:
+                angle_arg = [angles[i]]
             output = add_line_segment(segments_dict, 
                                       polygon_arr, 
                                       segment_thickness_dict, 
                                       thickness=thickness_arr[i], 
                                       min_distance = epsilon, 
                                       nucleation_point = None, 
-                                      angles=[angles[i]],
+                                      angles=angle_arg,
                                       box_size=box_size)
             if output:
                 segments_dict, polygon_arr, segment_thickness_dict, n_pts, ang = output

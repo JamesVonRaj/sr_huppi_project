@@ -5,4 +5,5 @@ shapely
 networkx
 GraphRicciCurvature
 pandas
+seaborn
 
